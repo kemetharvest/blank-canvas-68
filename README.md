@@ -1,29 +1,21 @@
-# Welcome to your Lovable project
+# Enhanced Vite React TypeScript Template
 
-This project was built with [Lovable](https://lovable.dev).
+Vite + React + TypeScript + Tailwind CSS template with Shadcn/ui pre-configured.
 
-## Build with Lovable
+## Features
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+- **Linting**: TypeScript (`tsc --noEmit`), ESLint, and Stylelint
+- **Shadcn/ui**: Pre-configured with all Shadcn components
+- **Modern Stack**: Vite + React + TypeScript + Tailwind CSS
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+## Available Scripts
 
-## Development
+```bash
+# Run all linting (types + JS + CSS)
+npm run lint
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+# Individual linting
+npm run lint:types # TypeScript (tsc --noEmit)
+npm run lint:js    # ESLint
+npm run lint:css   # Stylelint
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS

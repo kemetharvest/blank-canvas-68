@@ -1,75 +1,56 @@
-import { createFileRoute } from "@tanstack/react-router";
-import ScrollToTop from "@/components/bank/ScrollToTop";
-import Header from "@/components/bank/Header";
-import HeroSlider from "@/components/bank/HeroSlider";
-import SavingsWinnersBanner from "@/components/bank/SavingsWinnersBanner";
-import CardsSection from "@/components/bank/CardsSection";
-import LoanCalculator from "@/components/bank/LoanCalculator";
-import NewsSection from "@/components/bank/NewsSection";
-import SiteFooter from "@/components/bank/SiteFooter";
+import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute("/")({
+/**
+ * Home route (/). A neutral, FULL-BLEED starting point — no app chrome, no
+ * sidebar. Replace this body with your real landing page or app home.
+ *
+ * Add more pages as files under `src/routes/` (e.g. `src/routes/about.tsx`
+ * → /about). The HTML document + providers live once in `__root.tsx`.
+ *
+ * Building a SaaS / dashboard app? The sidebar shell already exists at
+ * `src/routes/app.tsx` with its home at `src/routes/app/index.tsx` (→ /app) — add
+ * your pages as files in `src/routes/app/`. Do NOT create a `src/routes/_app.tsx`:
+ * a `_`-prefixed layout is PATHLESS, so `_app/index.tsx` resolves to `/` and
+ * collides with THIS file (build fails: "Conflicting configuration paths").
+ * Dashboard-only product? Keep this file and redirect it to `/app`.
+ * Landing pages, marketing sites, content, and games stay full-bleed (default) —
+ * delete `src/routes/app.tsx` + `src/routes/app/` if you don't need a dashboard.
+ *
+ * SEO: set per-page title/description/Open Graph here in `head()`.
+ *
+ * SSR / routing (this template is server-rendered — TanStack Start):
+ * - Routes are files under `src/routes/` that `export const Route =
+ *   createFileRoute('/path')({ component })`. NEVER `export default` a route.
+ *   Navigate with `Link` from `@tanstack/react-router` (there is no `NavLink`).
+ * - Reading Blink auth/SDK state (`blink.auth`), `localStorage`, or `window` at
+ *   render CRASHES SSR / hydration-mismatches and ships a blank first page. Wrap
+ *   that subtree in `<BlinkClientBoundary fallback={…}>` (from
+ *   `@/components/BlinkClientBoundary`) — wrap the whole tree if the entire page
+ *   needs the browser. Keep static content outside the boundary. Do NOT use the
+ *   route's `ssr: false`: a client-only route in this template hits Start's
+ *   server-context `node:async_hooks` path (a throwing browser stub) and ships a
+ *   BLANK preview ("AsyncLocalStorage is not a constructor").
+ */
+export const Route = createFileRoute('/')({
   head: () => ({
     meta: [
-      { title: "البنك الأردني الكويتي | الرئيسية" },
-      {
-        name: "description",
-        content:
-          "حسابات، بطاقات، قروض وخدمات مصرفية للأفراد والشركات — البنك الأردني الكويتي.",
-      },
-      { property: "og:title", content: "البنك الأردني الكويتي | الرئيسية" },
-      {
-        property: "og:description",
-        content:
-          "حسابات، بطاقات، قروض وخدمات مصرفية للأفراد والشركات — البنك الأردني الكويتي.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { title: 'Home · Blink App' },
+      { name: 'description', content: 'Welcome — an app built with Blink.' },
     ],
   }),
-  component: Index,
-});
+  component: Home,
+})
 
-function AnnouncementNote() {
+function Home() {
   return (
-    <section className="relative bg-background py-10 md:py-14">
-      <svg
-        viewBox="0 0 80 160"
-        aria-hidden="true"
-        className="pointer-events-none absolute end-1 top-1/2 h-40 w-20 -translate-y-1/2 sm:h-44 sm:w-24 md:end-auto md:start-4 md:h-36 md:w-16"
-      >
-        <path
-          d="M8 8 L64 80 L8 152"
-          stroke="var(--bank-gold)"
-          strokeWidth="12"
-          fill="none"
-        />
-      </svg>
-      <p className="mx-auto max-w-3xl px-6 pe-20 text-center text-[15px] font-normal leading-7 text-foreground sm:pe-24 sm:text-[17px] sm:leading-8 md:pe-6">
-        <strong className="font-bold">
-          إعلان إلى السادة مساهمي وعملاء البنك الأردني الكويتي
-        </strong>{" "}
-        بخصوص أسماءهم وأرباح المساهمين وودائع العملاء الذين ينطبق عليهم قانون
-        تملك الحكومة للأموال التي لحقها التقادم.
+    <main className="flex min-h-dvh flex-col items-center justify-center gap-3 px-6 text-center">
+      <h1 className="text-2xl font-semibold tracking-tight">Your Blink app is ready</h1>
+      <p className="max-w-md text-sm text-muted-foreground">
+        This is the full-bleed starter home with no sidebar. Edit{' '}
+        <code className="rounded bg-muted px-1">src/routes/index.tsx</code> to build your
+        page, or add routes under{' '}
+        <code className="rounded bg-muted px-1">src/routes/</code>.
       </p>
-    </section>
-  );
-}
-
-function Index() {
-  return (
-    <div id="top" className="min-h-screen bg-background">
-      <Header />
-      <main>
-        <HeroSlider />
-        <AnnouncementNote />
-        <SavingsWinnersBanner />
-        <CardsSection />
-        <LoanCalculator />
-        <NewsSection />
-      </main>
-      <SiteFooter />
-      <ScrollToTop />
-    </div>
-  );
+    </main>
+  )
 }
